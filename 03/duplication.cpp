@@ -63,6 +63,17 @@ int main(int argc, char const *argv[])
 		while(cin>>num){
 			nums.push_back(num);
 		}
+		int len=nums.size();
+		if(len==0){
+			cout<<"enter fault!!"<<endl;
+			return 0;
+		}
+		for(int i=0; i<len; ++i){
+			if(nums[i]<0 || nums[i]>=len){
+				cout<<"enter fault!!"<<endl;
+				return 0;
+			}
+		}
 	}
 	else{
 		nums.push_back(2);
