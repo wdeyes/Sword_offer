@@ -1,5 +1,6 @@
 #include<iostream>
 #include"BinaryTree.h"
+#include<exception>
 using namespace std;
 
 BinaryTreeNode* core(int* preorder_s, int* preorder_e, int* inorder_s, int* inorder_e){
@@ -11,16 +12,14 @@ BinaryTreeNode* core(int* preorder_s, int* preorder_e, int* inorder_s, int* inor
 			return root;
 		}
 		else{
-			cout << "ERROR" << endl;
-			return nullptr;
+			throw "error";
 		}
 	}
 	while(p_root<=inorder_e && *p_root!=*preorder_s)
 		p_root++;
 
 	if(p_root==inorder_e && *inorder_e!=*preorder_s){
-		cout << "ERROR" << endl;
-		return nullptr;
+		throw "error" ;
 	}
 	int leftlength=p_root-inorder_s;
 	if(leftlength>0){
@@ -41,9 +40,24 @@ BinaryTreeNode* solve(int* preorder, int* inorder, int length){
 }
 
 int main(int argc, char* argv[]){
-	const int length = 8;
-	int preorder[length]={1, 2, 4, 7, 3, 5, 6, 8};
-    int inorder[length] = {4, 7, 2, 1, 5, 3, 8, 6};
+	int length;
+	//int preorder[length]={1, 2, 4, 7, 3, 5, 6, 8};
+    //int inorder[length] = {4, 7, 2, 1, 5, 3, 8, 6};
+	
+	cout << "enter length: " << endl;
+	cin >> length;
+	int preorder[length];
+	int inorder[length];
+	cout << "enter preorder: " << endl;
+	int pre;
+	for(int i=0; cin>>pre; ++i){
+		preorder[i]=pre;
+	}
+	cin.clear();
+	cin.get();
+	cout << "enter inorder: " << endl;
+	for(int i=0; cin >> pre; ++i)
+		inorder[i]=pre;
 
 	cout << "preorder: " << endl;
 	for(int i=0; i<length; ++i)
@@ -53,9 +67,15 @@ int main(int argc, char* argv[]){
 		cout << inorder[i] << " ";
 	cout << endl;
 
-	BinaryTreeNode* root = solve(preorder, inorder, length);
-	cout << "******* print answer ******" << endl;
-	PrintTree(root);
-	DestroyTree(root);
+	try{
+		BinaryTreeNode* root = solve(preorder, inorder, length);
+		cout << "******* print answer ******" << endl;
+		PrintTree(root);
+		DestroyTree(root);
+	}
+	catch(const char* msg)
+	{
+		cerr << msg << endl;
+	}
 	return 0;
 }
