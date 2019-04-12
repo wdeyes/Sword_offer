@@ -70,33 +70,27 @@ BinaryTreeNode* solve(BinaryTreeNode* pNode){
 		cout << "This is null node" << endl;
 		return nullptr;
 	}
-	else{
-		BinaryTreeNode* pTemp=pNode;
-		if(pTemp->m_pRight!=nullptr){
-			pTemp=pTemp->m_pRight;
-			while(pTemp->m_pLeft!=nullptr)
-				pTemp=pTemp->m_pLeft;
-			cout << "Next node is: " << pTemp->m_nValue << endl;
-			return pTemp;
-		}	
-		else if(pTemp->m_pParent->m_pLeft==pTemp){
-			cout << "Next node is: " << pTemp->m_pParent->m_nValue << endl;
-			return pTemp->m_pParent;
+	BinaryTreeNode* ret=nullptr;
+	BinaryTreeNode* pTemp=pNode;
+	if(pTemp->m_pRight!=nullptr){
+		pTemp=pTemp->m_pRight;
+		while(pTemp->m_pLeft!=nullptr)
+			pTemp=pTemp->m_pLeft;
+		cout << "Next node is: " << pTemp->m_nValue << endl;
+		ret= pTemp;
+	}
+	else if(pTemp->m_pParent!=nullptr){
+		while(pTemp->m_pParent!=nullptr && pTemp->m_pParent->m_pLeft!=pTemp)
+			pTemp=pTemp->m_pParent;
+		if(pTemp->m_pParent==nullptr){
+			cout << "Next node is null." << endl;	
 		}
 		else{
-			while(pTemp->m_pParent!=nullptr && pTemp->m_pParent->m_pLeft!=pTemp)
-				pTemp=pTemp->m_pParent;
-			if(pTemp->m_pParent!=nullptr){
-				cout << "Next node is: " << pTemp->m_pParent->m_nValue << endl;	
-				return pTemp->m_pParent;
-			}
-			else{
-				cout << "Next node is null." << endl;
-				return nullptr;
-			}
+			cout << "Next node is: " << pTemp->m_pParent->m_nValue << endl;
+			ret = pTemp->m_pParent;
 		}
 	}
-		
+	return ret;
 }
 
 int main(){
