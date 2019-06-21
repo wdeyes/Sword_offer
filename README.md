@@ -175,3 +175,12 @@ cin.get();
 ## 面试题19
 
 - 递归、树
+
+## 面试题20
+
+[const char * 、char const *、 char * const 三者的区别](https://blog.csdn.net/silentob/article/details/76994618)
+
+- const char* ptr，不可以通过 ptr 修改所指内容
+- char const *ptr，与上面的等价
+- char* const ptr，
+
