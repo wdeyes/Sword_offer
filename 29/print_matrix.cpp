@@ -1,6 +1,7 @@
 #include<iostream>
 using namespace std;
 
+//注意矩阵的开始和结束
 void PrintACircle(int** numbers, int x, int cols, int rows){
 	for(int i=x; i<(cols+x); ++i){
 		cout << numbers[x][i] << " ";
