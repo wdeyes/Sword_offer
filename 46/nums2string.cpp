@@ -62,6 +62,7 @@ int GetTranslationCount(int number){
 		else
 			ans[i]=ans[i+1];
 	}
+	delete[] sNumber;
 	return ans[0];
 }
 
