@@ -6,7 +6,7 @@ int getMaxValue_solution1(const int* values, int rows, int cols){
 	if(values==nullptr || rows<=0 || cols<=0)
 		return -1;
 
-	// int ans[rows-1][cols-1];
+	//int ans[rows][cols];//不要用变量初始化静态数组，可以编译和运行，但越界不报错，所以避免使用。
 
 	int** ans = new int*[rows];
 	for(int i=0; i<rows; ++i)
@@ -149,10 +149,21 @@ int main(int argc, char* argv[])
     test4();
     test5();
 
-	// int ans[3][3];
-	// ans[1][1]=233;
-	// for(int i=0; i<3; ++i){
-	// 	for( int j=0; j<3; ++j)
+    //测试静态数组越界问题：
+	// int rows=3, cols=3;
+	// //const int rows=3, cols=3;
+	// int ans[rows-1][cols-1];
+	// for(int i=0; i<4; ++i){
+	// 	for( int j=0; j<4; ++j){
+	// 		ans[i][j]=0;
+	// 		cout << ans[i][j] << " ";
+	// 	}
+	// 	cout << endl; 
+	// }
+	// cout << endl;
+	// ans[0][2]=233;
+	// for(int i=0; i<4; ++i){
+	// 	for( int j=0; j<4; ++j)
 	// 		cout << ans[i][j] << " ";
 	// 	cout << endl; 
 	// }
