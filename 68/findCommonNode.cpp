@@ -17,13 +17,11 @@ bool FindPath(const TreeNode* pRoot, const TreeNode* pNode1, list<const TreeNode
 	bool ret=false;
 	for(it=pRoot->m_vChild.begin(); it!=pRoot->m_vChild.end(); ++it){
 		ret = FindPath(*it, pNode1, MyList);
-		if(!ret)
-			MyList.pop_back();
-		else{
-			ret=true;
+		if(ret)
 			break;
-		}
 	}
+	if(!ret)
+		MyList.pop_back();
 	return ret;
 }
 
