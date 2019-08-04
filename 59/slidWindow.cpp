@@ -11,8 +11,8 @@ vector<int> maxInWindows(const vector<int> num, unsigned int size){
 
 	deque<int> ans;
 	for(int i=0; i<size; ++i){
-		while(!ans.empty() && num[ans.front()]<num[i])
-			ans.pop_front();
+		while(!ans.empty() && num[ans.back()]<num[i])
+			ans.pop_back();
 		ans.push_back(i);
 	}
 	ret.push_back(num[ans.front()]);
